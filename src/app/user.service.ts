@@ -1,31 +1,21 @@
 import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {user} from './model/user.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   
-  constructor() { }
+  constructor(private http:HttpClient) { }
+  baseUrl:string='http://localhost:8080/user/';
   
-  fakeusers=[
-    {id: 1, firstName: 'Dhiraj', lastName: 'Ray', email: 'dhiraj@gmail.com'},
-    {id: 1, firstName: 'Tom', lastName: 'Jac', email: 'Tom@gmail.com'},
-    {id: 1, firstName: 'Hary', lastName: 'Pan', email: 'hary@gmail.com'},
-    {id: 1, firstName: 'praks', lastName: 'pb', email: 'praks@gmail.com'},
-  ];
-
   getUsers() {
-    return this.fakeusers;
-    
+    return this.http.get<user[]>(this.baseUrl);
   }
 
-  deleteUser(id:number){
-    this.fakeusers.map((user)=>{
-      if(user.id==id){
-        this.fakeusers.splice(this.fakeusers.indexOf(user),1);
-      }
-    })
-    return this.fakeusers;
+  createUser(user:user){
+    return this.http.post(this.baseUrl,user);
   }
 
 }

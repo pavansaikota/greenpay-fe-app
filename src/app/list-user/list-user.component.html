@@ -5,8 +5,7 @@
     <thead>
     <tr>
       <th class="hidden">Id</th>
-      <th>FirstName</th>
-      <th>LastName</th>
+      <th>Name</th>
       <th>Email</th>
       <th>Action</th>
     </tr>
@@ -14,8 +13,7 @@
     <tbody>
     <tr *ngFor="let user of users">
       <td class="hidden">{{user.id}}</td>
-      <td>{{user.firstName}}</td>
-      <td>{{user.lastName}}</td>
+      <td>{{user.name}}</td>
       <td>{{user.email}}</td>
       <td><button class="btn btn-danger" (click)="deleteUser(user)"> Delete</button>
         <button class="btn btn-danger" (click)="editUser(user)" style="margin-left: 20px;"> Edit</button></td>
